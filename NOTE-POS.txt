@@ -1,0 +1,162 @@
+
+----- LANGKAH AWAL INSTALL PROJECT MANTRAMATICS DI KOMPUTER LAIN -----
+
+  buat database db_pos
+  php artisan key:generate
+  php artisan migrate --seed
+  php artisan serve
+
+  -Kalau gak ada vendor
+   composer install
+
+  ----------------------------------------------------
+  |    PERMISSION/ROLE   | admin | operator| cashier |
+  ----------------------------------------------------
+  |  show products       |   V   |    V    |    -    |
+  |  create products     |   V   |    V    |    -    |
+  |  delete products     |   V   |    V    |    -    |
+  |  transactions        |   V   |    -    |    V    |
+  ----------------------------------------------------
+  |        USERS         | admin |   ajay  |  ompong |
+  ----------------------------------------------------
+
+PHP ARTISAN ----------------------------------------------------------
+
+- Memulai Laravel :
+  php artisan serve
+
+- Migrations Database
+  php artisan migrate
+
+- Menghapus Semua Data di Database Migrations :
+  php artisan migrate:fresh
+
+- Menghapus Semua Table di Database Migrations :
+  php artisan migrate:rollback
+
+- Membuat File Migration :
+  php artisan make:migration nama_migration_nya
+
+- Membuat File Model :
+  php artisan make:model NamaModelnya
+
+- Membuat File Migration Beserta Modelnya :
+  php artisan make:model NamaModelnya -m
+
+- Membuat File Controller :
+  php artisan make:controller NamaControllernya
+
+- Membuat Table Seeder :
+  php artisan make:seeder NamaSeedernya
+  - php artisan db:seed --class=NamaClassnya(NamaSeedernya)
+    ATAU kalau classnya sdh ada di DatabaseSeeder.php pakai yg ini :
+  - php artisan db:seed
+
+V-1 ------------------------------------------------------------------
+
+- Route template ada di :
+  routes/web.php
+
+- Default template atau indexnya ada di :
+  resources/views/templates/default.blade.php
+
+- Semua assets ada di :
+  public/assets
+
+- Semua file content(isi page) ada di :
+  resources/views/pages/
+
+V-2 ------------------------------------------------------------------
+
+- File Controller Authentifikasi ada di :
+  app/Http/Controllers/AuthController.php
+
+- Settingan Database ada di :
+  .env
+
+- Settingan Table Migration User ada di :
+  database/migrations/create_users_table.php
+- Modelnya ada di :
+  App/Models/User.php
+
+- Settingan Redirect Otomatis ke Home ada di :
+  app/Http/Middleware/RedirectIfAuthenticated.php
+
+V-3 ------------------------------------------------------------------
+
+- Settingan Artisan Make Model dirubah (Punya Folder Models Sendiri)
+  Cara setting lihat video "Tips Ngoding"
+
+- Settingan Table Migration Role & Permission ada di :
+  database/migrations/create_permission_table.php
+- Modelnya ada di :
+  App/Models/User.php
+
+- File Config Role & Permission ada di :
+  config/permission.php
+
+- File Config Middleware Role & Permission ada di :
+  app/Http/Kernel.php
+
+- Settingan 2 Table Seeder ada di :
+  database/seeds/RolePermissionSeeder.php
+  database/seeds/AdminUserSeeder.php
+
+- 2 Table Seeder di atas di call di file :
+  database/seeds/DatabaseSeeder.php
+
+  -- CRUD ------------------------------------------------------------
+
+  - Settingan Table Migration Categories ada di :
+    database/migrations/create_categories_table.php
+  - Modelnya ada di :
+    App/Models/Category.php
+
+  - Settingan Table Migration Comments ada di :
+    database/migrations/create_comments_table.php
+  - Modelnya ada di :
+    App/Models/Category.php
+
+  - Settingan Table Migration Posts ada di :
+    database/migrations/create_posts_table.php
+  - Modelnya ada di :
+    App/Models/Category.php
+
+  - Settingan Table Seeder (Category Seeder) ada di :
+    database/seeds/CategorySeeder.php
+
+  - Settingan OwnsRecord User Control ada di :
+    App/Http/AuthTraits/OwnsRecord.php
+
+  - Settingan UnauthException User Control ada di :
+    App/Exceptions/UnauthException.php
+
+  ------------------------------------------------------------------
+
+  *** Artisan Untuk V4 / V69 ***
+  - Untuk Database Relasi :
+    composer require doctrine/dbal
+    php artisan migrate
+
+  - Untuk File Upload Image :
+    composer require intervention/image
+
+  - Install NPM
+    rm -rf node_modules
+    rm package-lock.json yarn.lock
+    npm cache clear --force
+    npm install
+
+  - Untuk Export PDF
+    composer require barryvdh/laravel-dompdf
+
+  - Untuk Export Excel
+    composer require maatwebsite/excel
+
+  - Untuk library Chart.js
+    -npm install laravel-mix   -->ini saja
+       atau (npm init -y)
+    -npm install chart.js --save
+    -npm run dev
+
+----------------------------------------------------------------------
